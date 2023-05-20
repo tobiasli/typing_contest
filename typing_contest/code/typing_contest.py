@@ -52,11 +52,11 @@ def histogram(contestants) -> None:
     marks = np.array([c['score'] for c in contestants])
     labels = [f"{c['name']}" for c in contestants]
 
-    # Creating histogram
+    # Create bar plot
     fig, ax = plt.subplots(1, 1)
     bars = ax.bar(labels, marks)
 
-    # Add counts above the two bar graphs
+    # Add labels above the two bar graphs
     for rect, label in zip(bars, labels):
         height = rect.get_height()
         plt.text(rect.get_x() + rect.get_width() / 2.0, height, f'{label}', ha='center', va='bottom')
@@ -64,23 +64,6 @@ def histogram(contestants) -> None:
     ax.get_xaxis().set_visible(False)
     ax.set_ylim([0, 1])
 
-    # # Set title
-    # ax.set_title("Title")
-    #
-    # # adding labels
-    # ax.set_xlabel('x-label')
-    # ax.set_ylabel('y-label')
-    #
-    # # Make some labels.
-    # labels = [f"{c['name']}" for c in contestants]
-    #
-    # rects = ax.patches
-    # for rect, label in zip(rects, labels):
-    #     height = rect.get_height()
-    #     ax.text(rect.get_x() + rect.get_width() / 2, height + 0.01, label,
-    #             ha='center', va='bottom')
-
-    # Show plot
     plt.show()
 
 
