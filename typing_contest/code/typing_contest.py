@@ -1,6 +1,6 @@
 import typing as ty
 import os
-import sys
+import time
 import statistics
 
 import tregex
@@ -33,7 +33,8 @@ def score_two_files(candidate_filename: str, fasit_filename: str) -> ty.Tuple[fl
     for i, fasit_line in enumerate(fasit):
         if len(candidate) - 1 >= i:
             candidate_line = candidate[i]
-            scores.append(tregex.similarity(candidate_line, fasit_line))
+            if fasit_line:
+                scores.append(tregex.similarity(candidate_line, fasit_line))
         else:
             scores.append(0)
 
