@@ -1,6 +1,5 @@
 import typing as ty
 import os
-import time
 import statistics
 
 import tregex
@@ -8,12 +7,17 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 
-def get_contestants_and_filenames(folder: str) -> ty.Dict[str, ty.Dict[str, ty.Any]]:
+def get_contestants_and_filenames(folder: str, tobias_in_game: bool=True) -> ty.Dict[str, ty.Dict[str, ty.Any]]:
     """Return a dictionary of contestants and filename."""
     return {os.path.splitext(os.path.basename(file))[0]: dict(name=os.path.splitext(os.path.basename(file))[0],
                                                               filename=os.path.abspath(os.path.join(folder, file))) for
             file in
-            os.listdir(folder)}
+            os.listdir(folder) if
+                   (
+                           '.txt' in file and
+                           not (not tobias_in_game and "Tobias" in file)
+                   )
+                    }
 
 
 def get_file_contents(filename: str) -> str:
@@ -48,7 +52,7 @@ def rank_contestants(contestants: ty.Dict[str, ty.Dict]) -> ty.List[ty.Dict]:
     return sorted(iterable, key=lambda c: c['score'], reverse=True)
 
 
-def histogram(contestants) -> None:
+def histogram_scores(contestants) -> None:
     # Creating dataset
     marks = np.array([c['score'] for c in contestants])
     labels = [f"{c['name']}" for c in contestants]
@@ -63,7 +67,9 @@ def histogram(contestants) -> None:
         plt.text(rect.get_x() + rect.get_width() / 2.0, height, f'{label}', ha='center', va='bottom')
 
     ax.get_xaxis().set_visible(False)
-    ax.set_ylim([0, 1])
+    ax.set_ylim([0, max(marks)*1.25])
+
+    plt.title('difflib scores, average pr line of text')
 
     plt.show()
 
@@ -72,7 +78,7 @@ if __name__ == "__main__":
     game_dir = os.environ['typing_contest_game_dir']
     fasit_filename = os.environ['typing_contest_fasit_filename']
 
-    contestants = get_contestants_and_filenames(game_dir)
+    contestants = get_contestants_and_filenames(game_dir, tobias_in_game=False)
 
     for person in contestants.values():
         person['score'], person['scores'] = score_two_files(candidate_filename=person['filename'],
@@ -80,4 +86,4 @@ if __name__ == "__main__":
 
     ranked = rank_contestants(contestants)
 
-    histogram(ranked)
+    histogram_scores(ranked)
