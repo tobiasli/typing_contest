@@ -1,0 +1,14 @@
+Shyft is a cross-platform open
+toolbox developed at Statkraft in cooperation
+with the Department of Geosciences at the
+University of Oslo.
+
+The overall goal for the toolbox is to provide
+python-enabled high performance components with
+operational quality. This includes (but not
+limited to) the features listed below:
+
+- Well-designed components and algorithms aiming
+at speed, robustness and scalability
+
+- Using well known high performance open-sour
