@@ -1,0 +1,48 @@
+Shyft is a cross-platform open
+toolbox developed at Statkraft in cooperation
+with the Department of Geosciences at the
+University of Oslo.
+
+The overall goal for the toolbox is to provide
+python-enabled high performance components with
+operational quality. This includes (but not
+limited to) the features listed below:
+
+- Well-designed components and algorithms aiming
+at speed, robustness and scalability
+
+- Using well known high performance open-source
+3rd party libraries
+
+- Using C++ as primary core language, python as
+cooperative and orchestration tool
+
+- Unit-tests, integration tests, examples and
+demo, high code coverage
+
+- Continuous build-test-deploy on many platforms
+(linux,windows, even raspberry pi/arm is possible)
+
+- Integrated issue tracking, merge-requests,
+allowing everyone to contribute
+- Completely transparent and open available
+source-code
+- Supports in-house private build-systems for
+those that would like to extend and integrate
+with in-house software products
+
+This allows model experts in the business
+domain, scientists at institutes/universities
+together with professional programmers can
+cooperate efficiently to maximize the IT-
+support in the energy-market domain. Once
+improved functionality is implemented and properly
+tested, it can be released for use.
+
+Shyft has rolling-releases - improvements are
+shipped as soon as testing proves the improvement
+and quality. The Shyft software components are
+used in active 24x7 operation at Statkraft and are
+actively maintained and developed. Some of our
+tools and libraries will work nice for other
+domains as well, like the time-series package.
