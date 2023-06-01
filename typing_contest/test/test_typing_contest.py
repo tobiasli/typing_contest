@@ -64,20 +64,20 @@ def fasit_filename() -> str:
 
 def test_get_files(game_folder):
     expected = dict(
-        Benny=os.path.join(game_folder, "Benny.txt"),
-        Charles=os.path.join(game_folder, "Charles.txt"),
+        Benny=dict(name='Benny', filename=os.path.join(game_folder, "Benny.txt")),
+        Charles=dict(name='Charles', filename=os.path.join(game_folder, "Charles.txt")),
     )
     assert tc.get_contestants_and_filenames(game_folder) == expected
 
 
 def test_get_fasit(fasit_filename):
-    expected = ["This is contents", "Yes it is!"]
+    expected = ["This is contents", "Yes it is!", "No it isn't!"]
     assert tc.get_file_contents(fasit_filename) == expected
 
 
 def test_scores(fasit_filename, game_folder) -> None:
     candidate_filename = tc.get_contestants_and_filenames(game_folder)['Benny']
-    score, scores = tc.score_two_files(candidate_filename=candidate_filename, fasit_filename=fasit_filename)
+    score, scores = tc.score_two_files(candidate_filename=candidate_filename['filename'], fasit_filename=fasit_filename)
     assert score == pytest.approx(0.5454545454545454)
     assert scores == [pytest.approx(v) for v in [1, 0.6363636363636364, 0]]
 
